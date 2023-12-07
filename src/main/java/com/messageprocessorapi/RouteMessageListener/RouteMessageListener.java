@@ -1,3 +1,5 @@
+package com.messageprocessorapi.RouteMessageListener;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -10,7 +12,6 @@ public class RouteMessageListener {
 
     @KafkaListener(topics = "routes", groupId = "routeGroup")
     public void listen(String message) {
-        logger.info("Mensagem de rota recebida: {}", message);
-        // Outras operacoes, se necessario
+        logger.info("Mensagem de rota recebida: {}", message); 
     }
 }
