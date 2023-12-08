@@ -58,6 +58,12 @@
 			o seu projeto -->
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-boot-starter</artifactId>
+			<version>3.0.0</version> <!-- Verifique a versão mais recente -->
+		</dependency>
+
 	</dependencies>
 
 	<build>

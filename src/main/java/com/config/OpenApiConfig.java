@@ -17,7 +17,7 @@ public class OpenApiConfig implements WebMvcConfigurer {
     public GroupedOpenApi api() {
         return GroupedOpenApi.builder()
             .group("api")
-            .pathsToMatch("/rotas/**") // Specify the API paths you want to document
+            .pathsToMatch("/routes/**") // Specify the API paths you want to document
             .build();
     }
 
