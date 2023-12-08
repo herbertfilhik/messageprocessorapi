@@ -9,7 +9,7 @@ public class JacksonConfig {
     @Bean
     public Jackson2ObjectMapperBuilder jackson2ObjectMapperBuilder() {
         Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
-        builder.modules(new UUIDModule()); // Registre o módulo personalizado aqui
+        builder.modules(new UUIDModule()); // Register the custom module here
         return builder;
     }
 }

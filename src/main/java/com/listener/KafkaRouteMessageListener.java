@@ -12,6 +12,6 @@ public class KafkaRouteMessageListener {
 
     @KafkaListener(topics = "routes", groupId = "routeGroup")
     public void listen(String message) {
-        logger.info("Mensagem de rota recebida: {}", message); 
+        logger.info("Received route message: {}", message); 
     }
 }

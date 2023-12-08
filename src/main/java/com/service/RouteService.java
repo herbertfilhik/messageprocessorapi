@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.modelo.Rota;
+import com.model.RouteModel;
 
 @Service
-public class RotaService {
+public class RouteService {
 
     // URL do route-generator-main (ajuste de acordo com a sua configuração)
     private static final String ROUTE_GENERATOR_URL = "http://localhost:8080"; // Substitua pela URL correta
@@ -19,16 +19,16 @@ public class RotaService {
     private RestTemplate restTemplate; // Injete o RestTemplate para fazer chamadas HTTP
 
     // Implemente a lógica para obter as rotas concluídas do route-generator-main
-    public List<Rota> obterRotasConcluidas() {
+    public List<RouteModel> obterRotasConcluidas() {
         // Faça uma chamada HTTP para o route-generator-main para buscar as rotas concluídas
         // Por exemplo, você pode usar restTemplate para fazer a chamada GET para o endpoint apropriado
-        Rota[] rotasArray = restTemplate.getForObject(ROUTE_GENERATOR_URL + "/rotas/concluidas", Rota[].class);
+        RouteModel[] rotasArray = restTemplate.getForObject(ROUTE_GENERATOR_URL + "/routes/completed", RouteModel[].class);
 
         // Converta o array em uma lista de rotas
-        List<Rota> rotasConcluidas = new ArrayList<>();
+        List<RouteModel> rotasConcluidas = new ArrayList<>();
         if (rotasArray != null) {
-            for (Rota rota : rotasArray) {
-                rotasConcluidas.add(rota);
+            for (RouteModel route : rotasArray) {
+                rotasConcluidas.add(route);
             }
         }
 
