@@ -9,19 +9,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.modelo.Rota;
-import com.service.RotaService; // Importe o serviço aqui
+import com.service.RotaKafkaConsumer;
 
 @RestController
 @RequestMapping("/rotas")
 public class RotaController {
 
-    @Autowired
-    private RotaService rotaService; // Injete aqui o serviço que lida com as rotas
+   @Autowired
+   private RotaKafkaConsumer rotaKafkaConsumer;
 
-    @GetMapping("/concluidas")
-    public ResponseEntity<List<Rota>> obterRotasConcluidas() {
-        // Implemente a lógica para obter todas as rotas concluídas
-        List<Rota> rotasConcluidas = rotaService.obterRotasConcluidas();
-        return ResponseEntity.ok(rotasConcluidas);
-    }
+   @GetMapping("/concluidas")
+   public ResponseEntity<List<Rota>> obterRotasCompletas() {
+       List<Rota> rotasCompletas = rotaKafkaConsumer.obterRotasCompletas();
+       return ResponseEntity.ok(rotasCompletas);
+   }
 }

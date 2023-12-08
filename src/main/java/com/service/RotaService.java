@@ -13,7 +13,7 @@ import com.modelo.Rota;
 public class RotaService {
 
     // URL do route-generator-main (ajuste de acordo com a sua configuração)
-    private static final String ROUTE_GENERATOR_URL = "http://localhost:8088"; // Substitua pela URL correta
+    private static final String ROUTE_GENERATOR_URL = "http://localhost:8080"; // Substitua pela URL correta
 
     @Autowired
     private RestTemplate restTemplate; // Injete o RestTemplate para fazer chamadas HTTP
