@@ -1,15 +1,15 @@
-package com.messageprocessorapi.KafkaMessageProcessor;
+package com.message.processor;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.messageprocessorapi"})
-public class KafkaMessageProcessorApplication {
+@ComponentScan(basePackages = {"com.listener"})
+public class MessageProcessorApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(KafkaMessageProcessorApplication.class, args);
+		SpringApplication.run(MessageProcessorApplication.class, args);
 	}
 
 }
