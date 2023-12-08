@@ -1,4 +1,4 @@
-package com.service;
+package com.mpa.service;
 
 import java.util.ArrayList;
 import java.util.List;

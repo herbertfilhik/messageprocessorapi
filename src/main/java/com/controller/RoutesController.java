@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.model.RouteModel;
-import com.service.RouteKafkaConsumer;
+import com.mpa.service.RouteKafkaConsumer;
 
 import io.swagger.v3.oas.annotations.Operation;
 
