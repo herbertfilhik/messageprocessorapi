@@ -15,8 +15,8 @@ Before getting started, make sure you have the following requirements installed:
 git clone https://github.com/your-username/messageprocessorapi.git
 
 ## Other Kafka properties
-spring.kafka.bootstrap-servers=your-kafka-broker:9092
-spring.kafka.consumer.group-id=consumer-group
+- spring.kafka.bootstrap-servers=your-kafka-broker:9092
+- spring.kafka.consumer.group-id=consumer-group
 
 ## Build and run the project:
 cd messageprocessorapi
@@ -24,7 +24,8 @@ cd messageprocessorapi
 
 ## Usage
 The API can be accessed at http://localhost:8080. Be sure to check the API documentation for details on available endpoints.
-curl --location 'http://localhost:8080/routes/completed'
+- curl --location 'http://localhost:8080/routes/completed'
+- curl --location 'http://localhost:8080/routes/{idEvent}/events'
 
 ## Swagger
 OpenAPI definition
