@@ -1,4 +1,4 @@
-package com.service;
+package com.mpa.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,11 +11,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.model.RouteModel;
 
 @Service
-public class RouteKafkaConsumer {
+public class RouteKafkaConsumerStatusCompleted {
 
    private List<RouteModel> completedRoutes = new ArrayList<>();
 
-   @KafkaListener(topics = "routes", groupId = "my-consumer-group")
+   @KafkaListener(topics = "routes", groupId = "my-consumer-group-completed")
    public void consumeMessage(ConsumerRecord<String, String> message) {
        // Process the Kafka message
        String messageValue = message.value();
