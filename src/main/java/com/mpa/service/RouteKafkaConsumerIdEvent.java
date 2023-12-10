@@ -2,12 +2,13 @@ package com.mpa.service;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import java.util.*;
 import com.model.RouteModel;
 import com.fasterxml.jackson.databind.ObjectMapper; // Import necessário para deserialização
 
-@Service
+@Component
 public class RouteKafkaConsumerIdEvent {
     // Mapa para armazenar mensagens por routeId
     private Map<String, List<RouteModel>> routeMessages = new HashMap<>();
