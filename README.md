@@ -24,8 +24,22 @@ cd messageprocessorapi
 
 ## Usage
 The API can be accessed at http://localhost:8080. Be sure to check the API documentation for details on available endpoints.
+
 - curl --location 'http://localhost:8080/routes/completed'
+
 - curl --location 'http://localhost:8080/routes/{idEvent}/events'
+
+- curl  --location 'http://localhost:8080/routes/force-complete/' \
+		--header 'Content-Type: application/json' \
+		--data '    {
+		        "id": "386d13b0-4d38-49c5-8fe8-c1bda9002820",
+		        "courierId": "c177598e-686c-4c0b-8fa3-578a4cd67ef9",
+		        "status": "COMPLETED",
+		        "eventTime": 1702192648,
+		        "originId": "8598dc07-7040-4b42-ae6d-949036f8c71a",
+		        "destinationId": "36605a83-e96d-477f-a63e-74c846dad7a3"
+		    }'
+		    
 
 ## Swagger
 OpenAPI definition
