@@ -12,8 +12,8 @@ public class RouteModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
-    private String origin;
-    private String destination;
+    //private String origin;
+    //private String destination;
     private String courierId;
     private String status;
     private Long eventTime;
@@ -27,8 +27,8 @@ public class RouteModel {
     }
 
     public RouteModel(String origin, String destination, String courierId, String status, Long eventTime, String originId, String destinationId) {
-        this.origin = origin;
-        this.destination = destination;
+//        this.origin = origin;
+//        this.destination = destination;
         this.courierId = courierId;
         this.status = status;
         this.eventTime = eventTime;
@@ -45,21 +45,21 @@ public class RouteModel {
         this.id = id;
     }
 
-    public String getOrigin() {
-        return origin;
-    }
-
-    public void setOrigin(String origin) {
-        this.origin = origin;
-    }
-
-    public String getDestination() {
-        return destination;
-    }
-
-    public void setDestination(String destination) {
-        this.destination = destination;
-    }
+//    public String getOrigin() {
+//        return origin;
+//    }
+//
+//    public void setOrigin(String origin) {
+//        this.origin = origin;
+//    }
+//
+//    public String getDestination() {
+//        return destination;
+//    }
+//
+//    public void setDestination(String destination) {
+//        this.destination = destination;
+//    }
 
     public String getCourierId() {
         return courierId;
