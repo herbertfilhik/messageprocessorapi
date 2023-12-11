@@ -40,6 +40,8 @@ The API can be accessed at http://localhost:8080. Be sure to check the API docum
 		        "destinationId": "36605a83-e96d-477f-a63e-74c846dad7a3"
 		    }'
 		    
+- curl --location 
+	   --request POST 'http://localhost:8080/routes/9e561803-4ac4-4eb1-9106-100633a9bf33/force-complete'		    		    
 
 ## Swagger
 OpenAPI definition
