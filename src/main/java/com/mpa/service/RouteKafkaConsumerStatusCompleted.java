@@ -2,6 +2,7 @@ package com.mpa.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.model.RouteModel;
@@ -9,7 +10,7 @@ import com.model.RouteModel;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Component
 public class RouteKafkaConsumerStatusCompleted {
 
     private final List<RouteModel> completedRoutes = new ArrayList<>();
