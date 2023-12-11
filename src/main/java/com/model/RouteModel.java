@@ -21,7 +21,15 @@ public class RouteModel {
     private String destinationId; // Add the destinationId property
 
     // Constructors
-
+    public RouteModel(String id, String originId, String destinationId, String courierId, String status, Long eventTime) {
+        this.id = id;
+        this.courierId = courierId;
+        this.status = status;
+        this.eventTime = eventTime;
+        this.originId = originId;
+        this.destinationId = destinationId;
+    }
+    
     public RouteModel() {
         // Default empty constructor
     }
