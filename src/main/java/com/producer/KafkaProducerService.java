@@ -3,23 +3,18 @@ package com.producer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.model.RouteModel;
+import org.springframework.transaction.annotation.Transactional;
+
+import br.com.mentoring.route.generator.domain.dto.RouteDTO;
 
 @Service
 public class KafkaProducerService {
 
     @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
+    private KafkaTemplate<String, RouteDTO> kafkaTemplate;
 
-    private ObjectMapper objectMapper = new ObjectMapper();
-
-    public void sendRouteEvent(String topic, RouteModel event) {
-        try {
-            String message = objectMapper.writeValueAsString(event);
-            kafkaTemplate.send(topic, message);
-        } catch (Exception e) {
-            // Tratar exceção
-        }
-    }
+    @Transactional
+    public void sendRouteEvent(String topic, RouteDTO event) {
+        kafkaTemplate.send(topic, event);
+    }    
 }

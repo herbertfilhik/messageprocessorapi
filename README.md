@@ -14,6 +14,22 @@ Before getting started, make sure you have the following requirements installed:
 1. Clone this repository:
 git clone https://github.com/your-username/messageprocessorapi.git
 
+## Configure Dependency to External Project:**
+Use project dependence `route-generator`, follow the stepd:
+- Navegue até a pasta `libs` no repositório clonado.
+- In the Folder `libs` into cloned repository.
+- Search for JAR file `route-generator-1.0-SNAPSHOT.jar`.
+- Add the dependence in the file `pom.xml`:
+   ```xml
+   <dependency>
+       <groupId>org.example</groupId>
+       <artifactId>route-generator</artifactId>
+       <version>1.0-SNAPSHOT</version>
+       <scope>system</scope>
+       <systemPath>${project.basedir}/libs/route-generator-1.0-SNAPSHOT.jar</systemPath>
+   </dependency>
+
+
 ## Other Kafka properties
 - spring.kafka.bootstrap-servers=your-kafka-broker:9092
 - spring.kafka.consumer.group-id=consumer-group

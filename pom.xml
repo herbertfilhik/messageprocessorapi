@@ -54,8 +54,7 @@
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
-			<version>5.6.3</version> <!-- Use a versão do JUnit 5 compatível com
-			o seu projeto -->
+			<version>5.9.3</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -68,7 +67,11 @@
 			<artifactId>spring-kafka</artifactId>
 			<version>2.8.0</version> <!-- Use a versão mais recente compatível -->
 		</dependency>
-
+		<dependency>
+			<groupId>org.example</groupId>
+			<artifactId>route-generator</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>

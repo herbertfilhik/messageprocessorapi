@@ -3,32 +3,32 @@ package com.mpa.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.model.RouteModel;
+import br.com.mentoring.route.generator.domain.dto.RouteDTO;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Component
 public class RouteKafkaConsumerStatusCompleted {
 
-    private final List<RouteModel> completedRoutes = new ArrayList<>();
+    private static final Logger logger = LoggerFactory.getLogger(RouteKafkaConsumerStatusCompleted.class);
+
+    private final List<RouteDTO> completedRoutes = new ArrayList<>();
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @KafkaListener(topics = "routes", groupId = "completed-consumer-group")
-    public void listen(String message) {
-        try {
-            RouteModel route = objectMapper.readValue(message, RouteModel.class);
-            if ("COMPLETED".equals(route.getStatus())) {
-                completedRoutes.add(route);
-            }
-        } catch (Exception e) {
-            // Tratar exceção
+    public void listen(RouteDTO routeDTO) {
+        logger.info("Mensagem recebida: " + routeDTO);
+        if ("COMPLETED".equals(routeDTO.status().name())) {
+            completedRoutes.add(routeDTO);
         }
+
     }
 
-    public List<RouteModel> getCompletedRoutes() {
+    public List<RouteDTO> getCompletedRoutes() {
         return new ArrayList<>(completedRoutes);
     }
 }
