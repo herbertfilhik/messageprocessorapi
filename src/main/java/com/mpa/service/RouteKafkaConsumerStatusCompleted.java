@@ -1,49 +1,34 @@
 package com.mpa.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Component;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import br.com.mentoring.route.generator.domain.dto.RouteDTO;
+
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.stereotype.Service;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.model.RouteModel;
-
-@Service
+@Component
 public class RouteKafkaConsumerStatusCompleted {
 
-   private List<RouteModel> completedRoutes = new ArrayList<>();
+    private static final Logger logger = LoggerFactory.getLogger(RouteKafkaConsumerStatusCompleted.class);
 
-   @KafkaListener(topics = "routes", groupId = "my-consumer-group-completed")
-   public void consumeMessage(ConsumerRecord<String, String> message) {
-       // Process the Kafka message
-       String messageValue = message.value();
-       // Process the message, check for "COMPLETED" status
-       if (messageValue.contains("\"status\":\"COMPLETED\"")) {
-           RouteModel route = transformMessageToRoute(messageValue);
-           completedRoutes.add(route);
-       }
-   }
+    private final List<RouteDTO> completedRoutes = new ArrayList<>();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
-   private RouteModel transformMessageToRoute(String message) {
-	    try {
-	        // Create an ObjectMapper to deserialize JSON into a Java object
-	        ObjectMapper objectMapper = new ObjectMapper();
+    @KafkaListener(topics = "routes", groupId = "completed-consumer-group")
+    public void listen(RouteDTO routeDTO) {
+        logger.info("Mensagem recebida: " + routeDTO);
+        if ("COMPLETED".equals(routeDTO.status().name())) {
+            completedRoutes.add(routeDTO);
+        }
 
-	        // Use the ObjectMapper to deserialize the JSON message into a Route object
-	        RouteModel route = objectMapper.readValue(message, RouteModel.class);
+    }
 
-	        // Return the Route instance with the deserialized data
-	        return route;
-	    } catch (Exception e) {
-	        // Handle deserialization exceptions if they occur
-	        e.printStackTrace(); // You can customize how to handle the exception, such as logging or throwing a custom exception
-	        return null; // Return null or an empty Route instance in case of an error
-	    }
-	}
-
-   public List<RouteModel> getCompletedRoutes() {
-       return completedRoutes;
-   }
+    public List<RouteDTO> getCompletedRoutes() {
+        return new ArrayList<>(completedRoutes);
+    }
 }
