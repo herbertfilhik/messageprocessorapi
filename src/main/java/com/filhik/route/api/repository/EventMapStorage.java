@@ -10,7 +10,8 @@ public class EventMapStorage {
     // Mapa para armazenar mensagens por routeId
     private Map<String, List<RouteDTO>> routeMessages = new HashMap<>();
 
-    public void addEventForRoute(String routeId, RouteDTO route) {
+    public void addEventForRoute(RouteDTO route) {
+        var routeId = route.id().toString();
         // Adicionar a mensagem ao mapa, agrupada por routeId
         routeMessages.computeIfAbsent(routeId, k -> new ArrayList<>()).add(route);
     }

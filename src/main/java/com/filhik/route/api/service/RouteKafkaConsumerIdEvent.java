@@ -3,7 +3,6 @@ package com.filhik.route.api.service;
 import com.filhik.route.api.listener.dto.RouteDTO;
 import com.filhik.route.api.repository.EventMapStorage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,9 +15,8 @@ public class RouteKafkaConsumerIdEvent {
 		this.eventMapStorage = eventMapStorage;
 	}
 
-	@KafkaListener(topics = "routes", groupId = "my-consumer-group-idevent")
 	public void consumeMessage(RouteDTO routeDTO) {
-		eventMapStorage.addEventForRoute(routeDTO.id().toString(), routeDTO);
+		eventMapStorage.addEventForRoute(routeDTO);
 	}
 
 	// Outros métodos, se necessário

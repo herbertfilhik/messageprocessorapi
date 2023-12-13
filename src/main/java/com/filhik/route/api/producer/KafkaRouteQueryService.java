@@ -1,7 +1,6 @@
 package com.filhik.route.api.producer;
 
 import com.filhik.route.api.listener.dto.RouteDTO;
-import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,7 +12,6 @@ public class KafkaRouteQueryService {
 
     private final BlockingQueue<RouteDTO> messageQueue = new LinkedBlockingQueue<>();
 
-    @KafkaListener(topics = "routes", groupId = "completed-consumer-group-by-id")
     public void listen(RouteDTO routeDTO) {
         if (routeDTO != null && routeDTO.id() != null) {
             messageQueue.add(routeDTO);
