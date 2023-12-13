@@ -1,4 +1,4 @@
-package com.model;
+package com.filhik.route.api.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

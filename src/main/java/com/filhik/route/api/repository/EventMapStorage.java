@@ -1,7 +1,8 @@
-package com.repository;
+package com.filhik.route.api.repository;
 
+import com.filhik.route.api.listener.dto.RouteDTO;
 import org.springframework.stereotype.Component;
-import br.com.mentoring.route.generator.domain.dto.RouteDTO;
+
 import java.util.*;
 
 @Component

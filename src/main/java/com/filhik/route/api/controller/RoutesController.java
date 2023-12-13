@@ -1,23 +1,20 @@
-package com.controller;
+package com.filhik.route.api.controller;
 
-import java.time.Instant;
-import java.util.List;
-import java.util.Optional;
-
+import com.filhik.route.api.listener.dto.RouteDTO;
+import com.filhik.route.api.listener.dto.RouteDTO.RouteStatus;
+import com.filhik.route.api.producer.KafkaProducerService;
+import com.filhik.route.api.producer.KafkaRouteQueryService;
+import com.filhik.route.api.repository.EventMapStorage;
+import com.filhik.route.api.service.RouteKafkaConsumerStatusCompleted;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import br.com.mentoring.route.generator.domain.dto.RouteDTO;
-import br.com.mentoring.route.generator.domain.entity.RouteStatus;
-
-import com.mpa.service.RouteKafkaConsumerStatusCompleted;
-import com.producer.KafkaProducerService;
-import com.producer.KafkaRouteQueryService;
-import com.repository.EventMapStorage;
-
-import io.swagger.v3.oas.annotations.Operation;
+import java.time.Instant;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/routes")

@@ -1,13 +1,13 @@
-package com.config;
+package com.filhik.route.api.config;
 
+import org.springdoc.core.GroupedOpenApi;
+import org.springdoc.core.SwaggerUiConfigParameters;
+import org.springdoc.core.SwaggerUiConfigProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springdoc.core.GroupedOpenApi;
-import org.springdoc.core.SwaggerUiConfigParameters;
-import org.springdoc.core.SwaggerUiConfigProperties;
 
 @Configuration
 @EnableWebMvc

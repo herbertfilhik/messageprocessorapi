@@ -1,8 +1,8 @@
-package com.producer;
+package com.filhik.route.api.producer;
 
+import com.filhik.route.api.listener.dto.RouteDTO;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
-import br.com.mentoring.route.generator.domain.dto.RouteDTO;
 
 import java.util.Optional;
 import java.util.concurrent.BlockingQueue;

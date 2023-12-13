@@ -1,11 +1,9 @@
-package com.message.processor;
+package com.filhik.route.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
-@SpringBootApplication
-@ComponentScan(basePackages = {"com"})
+@SpringBootApplication(scanBasePackages = "com.filhik.route.api")
 public class MessageProcessorApplication {
 
 	public static void main(String[] args) {
