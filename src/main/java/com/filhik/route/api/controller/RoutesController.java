@@ -4,7 +4,7 @@ import com.filhik.route.api.listener.dto.RouteDTO;
 import com.filhik.route.api.listener.dto.RouteDTO.RouteStatus;
 import com.filhik.route.api.producer.KafkaProducerService;
 import com.filhik.route.api.producer.KafkaRouteQueryService;
-import com.filhik.route.api.repository.EventMapStorage;
+import com.filhik.route.api.service.RouteKafkaConsumerIdEvent;
 import com.filhik.route.api.service.RouteKafkaConsumerStatusCompleted;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,26 +15,24 @@ import org.springframework.web.bind.annotation.*;
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/routes")
 public class RoutesController {
 
-	private final EventMapStorage eventMapStorage; // Injete EventMapStorage
 
 	@Autowired
 	private KafkaProducerService kafkaProducerService;
 
 	@Autowired
 	private RouteKafkaConsumerStatusCompleted kafkaConsumerService;
-
+	
+	@Autowired
+	private RouteKafkaConsumerIdEvent routeKafkaConsumerIdEvent;
+	
 	@Autowired
 	private KafkaRouteQueryService kafkaRouteQueryService;
-
-	@Autowired
-	public RoutesController(EventMapStorage eventMapStorage) {
-		this.eventMapStorage = eventMapStorage;
-	}
 
 	@GetMapping("/completed")
 	@Operation(summary = "Obter rotas concluídas", description = "Retorna uma lista de rotas concluídas.")
@@ -43,12 +41,11 @@ public class RoutesController {
 	    return ResponseEntity.ok(completedRoutes);
 	}
 
-
 	@GetMapping("/{routeId}/events")
-	@Operation(summary = "Get all routes by Id Event", description = "Returns a list of Id Events.")
+	@Operation(summary = "Obter todos os eventos por ID de Rota", description = "Retorna uma lista de eventos para uma rota específica.")
 	public ResponseEntity<List<RouteDTO>> getEventsForRoute(@PathVariable String routeId) {
-		List<RouteDTO> eventsForRoute = eventMapStorage.getEventsForRouteId(routeId); // Use EventMapStorage
-		return ResponseEntity.ok(eventsForRoute);
+	    List<RouteDTO> eventsForRoute = routeKafkaConsumerIdEvent.getEventsForRouteId(routeId);
+	    return ResponseEntity.ok(eventsForRoute);
 	}
 
 	@PostMapping("/{routeId}/force-complete")
