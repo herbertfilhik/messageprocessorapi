@@ -1,6 +1,7 @@
 package com.filhik.route.api.model;
 
 import com.filhik.route.api.listener.dto.RouteDTO;
+import com.filhik.route.api.listener.dto.RouteDTO.RouteStatus;
 
 import java.time.Instant;
 import java.util.Objects;
@@ -30,6 +31,21 @@ public class Route {
         this.originId = originId;
         this.destinationId = destinationId;
         this.eventTime = eventTime;
+    }
+    
+    public static Route create(UUID id, UUID routeId, UUID courierId, String status, UUID originId, UUID destinationId, Instant eventTime) {
+        return new Route(id, routeId, courierId, status, originId, destinationId, eventTime);
+    }
+    
+    public RouteDTO toDTO() {
+        return new RouteDTO(
+            this.id,
+            this.originId,
+            this.destinationId,
+            this.courierId,
+            RouteStatus.valueOf(this.status), // Supondo que RouteStatus é um enum
+            this.eventTime
+        );
     }
 
     public static Route fromDTO(RouteDTO routeDTO) {

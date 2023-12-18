@@ -37,11 +37,12 @@ public class RoutesController {
 	}
 
 	@GetMapping("/completed")
-	@Operation(summary = "Get completed routes", description = "Returns a list of completed routes.")
+	@Operation(summary = "Obter rotas concluídas", description = "Retorna uma lista de rotas concluídas.")
 	public ResponseEntity<List<RouteDTO>> getCompletedRoutes() {
-		List<RouteDTO> completedRoutes = kafkaConsumerService.getCompletedRoutes();
-		return ResponseEntity.ok(completedRoutes);
+	    List<RouteDTO> completedRoutes = kafkaConsumerService.getCompletedRoutesFromDatabase();
+	    return ResponseEntity.ok(completedRoutes);
 	}
+
 
 	@GetMapping("/{routeId}/events")
 	@Operation(summary = "Get all routes by Id Event", description = "Returns a list of Id Events.")
