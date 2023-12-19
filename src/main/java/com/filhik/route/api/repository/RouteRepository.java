@@ -9,5 +9,6 @@ import java.util.UUID;
 public interface RouteRepository {
     List<Route> findByStatus(String status);    
     List<Route> findByRouteIdString(String routeId);
-    UUID save(Route route);	
+    UUID save(Route route);
+	List<UUID> findAllRouteIdsHavingNotCompleted();	
 }

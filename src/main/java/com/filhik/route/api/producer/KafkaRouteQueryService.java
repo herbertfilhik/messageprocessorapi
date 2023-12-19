@@ -1,26 +1,20 @@
 package com.filhik.route.api.producer;
 
-import com.filhik.route.api.listener.dto.RouteDTO;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
+import com.filhik.route.api.repository.RouteJdbcRepository;
+import com.filhik.route.api.model.Route;
 
 @Service
 public class KafkaRouteQueryService {
 
-    private final BlockingQueue<RouteDTO> messageQueue = new LinkedBlockingQueue<>();
+    @Autowired
+    private RouteJdbcRepository routeJdbcRepository;
 
-    public void listen(RouteDTO routeDTO) {
-        if (routeDTO != null && routeDTO.id() != null) {
-            messageQueue.add(routeDTO);
-        }
-    }
-
-    public Optional<RouteDTO> findRouteById(String routeId) {
-        return messageQueue.stream()
-                .filter(route -> route.id() != null && route.id().toString().equals(routeId))
-                .reduce((first, second) -> second);
+    public List<Route> findAllRoutesById(String routeId) {
+        // Busca as rotas no banco de dados
+        return routeJdbcRepository.findByRouteIdString(routeId);
     }
 }
