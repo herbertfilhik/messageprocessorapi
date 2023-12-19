@@ -21,12 +21,18 @@ public class RouteJdbcRepository implements RouteRepository {
 	private final NamedParameterJdbcTemplate namedJdbcTemplate;
 
 	// Constantes para consultas SQL
-	private static final String SQL_INSERT = "INSERT INTO routes(id, route_id, courier_id, origin_id, destination_id, status, event_time) "
-			+ "values (:id, :routeId, :courierId, :originId, :destinationId, :status, :eventTime)";
+//	private static final String SQL_INSERT = "INSERT INTO routes(id, route_id, courier_id, origin_id, destination_id, status, event_time) "
+//			+ "values (:id, :routeId, :courierId, :originId, :destinationId, :status, :eventTime)";
+	
+	// Constantes para consultas SQL
+	protected static final String SQL_INSERT = "INSERT INTO routes(id, route_id, courier_id, origin_id, destination_id, status, event_time) "
+	        + "values (:id, :routeId, :courierId, :originId, :destinationId, :status, :eventTime)";
 
-	private static final String SQL_SELECT_BY_STATUS = "SELECT * FROM routes WHERE status = :status";
 
-	private static final String SQL_SELECT_BY_ROUTE_ID = "SELECT * FROM routes WHERE route_id = :routeId";
+	//private static final String SQL_SELECT_BY_STATUS = "SELECT * FROM routes WHERE status = :status";
+	protected static final String SQL_SELECT_BY_STATUS = "SELECT * FROM routes WHERE status = :status";
+
+	protected static final String SQL_SELECT_BY_ROUTE_ID = "SELECT * FROM routes WHERE route_id = :routeId";
 
 	private static final String SQL_SELECT_ALL_HAVING_NOT_COMPLETED = "SELECT route_id FROM routes GROUP BY route_id HAVING NOT bool_or(status = 'COMPLETED')";
 
@@ -72,7 +78,7 @@ public class RouteJdbcRepository implements RouteRepository {
 	}
 
 	// Mapeamento do resultado da consulta para um objeto Route
-	private final RowMapper<Route> routeRowMapper = (rs, rowNum) -> Route.create(UUID.fromString(rs.getString("id")),
+	protected final RowMapper<Route> routeRowMapper = (rs, rowNum) -> Route.create(UUID.fromString(rs.getString("id")),
 			UUID.fromString(rs.getString("route_id")), UUID.fromString(rs.getString("courier_id")),
 			rs.getString("status"), UUID.fromString(rs.getString("origin_id")),
 			UUID.fromString(rs.getString("destination_id")), rs.getTimestamp("event_time").toInstant());

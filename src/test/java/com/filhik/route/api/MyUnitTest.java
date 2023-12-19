@@ -1,4 +1,4 @@
-package com.message.processor;
+package com.filhik.route.api;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
